@@ -23,7 +23,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         //const user: any = await User.findOne({ where: { email: email } });
         const user = yield user_1.User.findOne({
             where: { email: email },
-            attributes: ['id', 'name', 'email', 'password']
+            attributes: ['id', 'email', 'password']
         });
         if (!user) {
             return res.status(400).json({
