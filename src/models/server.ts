@@ -41,8 +41,8 @@ class Server {
     async dbConnect() {
         try {
             console.error('Conexion exitosa a BD:');
-            await Client.sync()
-            await User.sync();
+            //await Client.sync()
+            //await User.sync();
         } catch (error) {
             console.error('Error al conectar a la BD:', error);
         }
