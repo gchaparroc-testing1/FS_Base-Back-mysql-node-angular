@@ -11,6 +11,7 @@ const validateToken = (req, res, next) => {
         try {
             const bearerToken = headerToken.slice(7);
             jsonwebtoken_1.default.verify(bearerToken, process.env.SECRET_KEY || 'bearerTokenGCHC123');
+            //console.log(bearerToken);
             next();
         }
         catch (error) {

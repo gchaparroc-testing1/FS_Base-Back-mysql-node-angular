@@ -8,6 +8,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
         try {
             const bearerToken = headerToken.slice(7);
             jwt.verify(bearerToken, process.env.SECRET_KEY || 'bearerTokenGCHC123');
+            //console.log(bearerToken);
             next()
         } catch (error) {
             res.status(401).json({

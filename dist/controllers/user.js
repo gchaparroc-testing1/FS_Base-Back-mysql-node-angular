@@ -19,11 +19,11 @@ const bcrypt = require('bcryptjs');
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
+        let id;
         // Validamos si el usuario existe en la base de datos
-        //const user: any = await User.findOne({ where: { email: email } });
         const user = yield user_1.User.findOne({
             where: { email: email },
-            attributes: ['id', 'email', 'password']
+            attributes: ['id', 'email', 'password', 'user_type_id']
         });
         if (!user) {
             return res.status(400).json({
@@ -31,16 +31,17 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             });
         }
         // Validamos password
-        //const passwordValid = await bcrypt.compare(password, user.password)
         const passwordValid = yield bcrypt.compareSync(password, user.password);
         if (!passwordValid) {
             return res.status(400).json({
                 msg: `Password Incorrecta`
             });
         }
+        id = user.id;
         // Generamos token
         const token = jsonwebtoken_1.default.sign({
-            email: email
+            //email: email
+            id: id
         }, process.env.SECRET_KEY || 'bearerTokenGCHC123', {
             expiresIn: '40000'
         });

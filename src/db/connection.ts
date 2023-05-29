@@ -2,10 +2,10 @@ import { Sequelize } from "sequelize";
 
 
 //const sequelize = new Sequelize('rrhh', 'root', 'admin123', {
-const sequelize = new Sequelize("b7zyi7jl3rpdvytlrv2f", "ujvikmwrhwmwrkju", "n04qcqzPfGjgoOnojXFG", {
+const sequelize = new Sequelize("customers", "gchaparro", "7n2L'}1m$10hLDCa", {
     //host: '127.0.0.1',
-    host: "b7zyi7jl3rpdvytlrv2f-mysql.services.clever-cloud.com",
-    port: 3306,
+    host: "127.0.0.1",
+    port: 3308,
     dialect: "mysql",   
 });
 

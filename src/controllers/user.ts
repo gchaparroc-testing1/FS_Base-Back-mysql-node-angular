@@ -7,12 +7,12 @@ const bcrypt = require('bcryptjs');
 export const loginUser = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
+        let id;
     
         // Validamos si el usuario existe en la base de datos
-        //const user: any = await User.findOne({ where: { email: email } });
         const user: any = await User.findOne({
             where: { email: email },
-            attributes: ['id', 'email', 'password']
+            attributes: ['id', 'email', 'password', 'user_type_id']
         });
 
         if(!user) {
@@ -22,7 +22,6 @@ export const loginUser = async (req: Request, res: Response) => {
         }
 
         // Validamos password
-        //const passwordValid = await bcrypt.compare(password, user.password)
         const passwordValid = await bcrypt.compareSync(password, user.password);
 
         if(!passwordValid) {
@@ -30,10 +29,12 @@ export const loginUser = async (req: Request, res: Response) => {
                 msg: `Password Incorrecta`
             })
         }
+        id = user.id;
 
         // Generamos token
         const token = jwt.sign({
-            email: email
+            //email: email
+            id: id
         }, process.env.SECRET_KEY || 'bearerTokenGCHC123', {
             expiresIn: '40000'
         });

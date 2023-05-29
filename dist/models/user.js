@@ -18,6 +18,10 @@ exports.User = connection_1.default.define('user', {
     password: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
+    },
+    user_type_id: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
     }
 }, {
     tableName: 'user'

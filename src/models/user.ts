@@ -13,6 +13,10 @@ export const User = sequelize.define('user', {
     password: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    user_type_id: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     tableName: 'user'
